@@ -1,0 +1,7 @@
+{
+  "name": "sap1-simulator",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Web-based SAP-1 architecture simulator",
+  "scripts": { "start": "npx --yes serve ." }
+}

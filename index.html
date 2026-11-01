@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SAP-1 Architecture Simulator</title>
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<h1>SAP-1 simulator<small>8-bit computer with a 16×8 RAM, a shared W-bus and a six-state ring counter</small></h1>
+<div class="bar">
+  <button id="step">Step (one T-state)</button><button id="stepi">Step instruction</button>
+  <button id="run" class="pri">▶ Run</button><button id="reset">Reset</button>
+  <label>Clock <input id="hz" type="range" min="1" max="20" value="4"> <b id="hzv">4 Hz</b></label>
+  <span id="status" class="pill">READY</span><span id="phase" class="hint"></span>
+</div>
+<div class="grid">
+  <section class="card"><h2>Load program</h2>
+    <textarea id="src" spellcheck="false" aria-label="Program and data"></textarea>
+    <p><button id="load" class="pri">Load into RAM</button> <button id="demo">Test case</button> <span id="msg"></span></p>
+    <p class="hint">One instruction per line: LDA, ADD and SUB take a hex address; OUT and HLT take none. Data lines look like <code>9: 25</code> (hex or 8 bits). A semicolon starts a comment. Edit, then press Load.</p>
+  </section>
+  <section class="card"><h2>RAM (16 × 8)</h2><table id="ram"></table></section>
+  <section class="card wide"><h2>W-bus and registers</h2>
+    <div class="busbar" id="cells"></div>
+    <div id="buslbl" class="hint mono"></div><br>
+    <div class="regs" id="regs"></div>
+    <p class="hint"><span style="color:var(--src)">■</span> drives the bus · <span style="color:var(--dst)">■</span> loads from the bus. Subtraction uses 2’s complement: A + NOT B + 1.</p>
+  </section>
+  <section class="card"><h2>Controller-sequencer</h2><div class="chips" id="ring"></div><div class="chips" id="sigs"></div></section>
+  <section class="card"><h2>Output register</h2><div id="leds"></div><div id="outv" class="mono"></div></section>
+</div>
+<script type="module" src="js/main.js"></script>
+</body>
+</html>
